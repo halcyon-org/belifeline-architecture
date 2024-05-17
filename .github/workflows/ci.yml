@@ -41,7 +41,7 @@ jobs:
       - uses: ts-graphviz/setup-graphviz@v2
       - name: Generate files using just
         run: |
-          just lint
+          just lint-python
       - name: commit and push changes
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"

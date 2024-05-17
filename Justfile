@@ -6,6 +6,10 @@ default:
 gen:
   python3 diagrams
 
-lint:
+lint: lint-python lint-markdown
+
+lint-python: 
   black diagrams/
+
+lint-markdown:
   pnpm lint
