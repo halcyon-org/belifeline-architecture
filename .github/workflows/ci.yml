@@ -3,7 +3,7 @@ on: pull_request
 jobs:
   lint_markdown:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
       - name: Setup pnpm
@@ -22,16 +22,13 @@ jobs:
         run: pnpm lint
   lint_python:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        python-version: ["3.10"]
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.10"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -41,9 +38,10 @@ jobs:
         run: |
           black diagrams/
       - uses: extractions/setup-just@v2
+      - uses: ts-graphviz/setup-graphviz@v2
       - name: Generate files using just
         run: |
-          just gen
+          python3 diagrams
       - name: Check for changes
         run: |
           git config --global user.name "github-actions[bot]"
@@ -51,9 +49,9 @@ jobs:
 
           # Check for changes
           if [[ -n $(git status --porcelain) ]]; then
-            echo "Uncommitted changes found after running 'just gen'"
+            echo "Uncommitted changes found"
             git diff
             exit 1
           else
-            echo "No changes detected after running 'just gen'"
+            echo "No changes detected"
           fi
