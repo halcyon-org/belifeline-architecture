@@ -1,13 +1,10 @@
-from diagrams import Diagram, Cluster, Edge
+from diagrams import Diagram, Cluster
 from diagrams.gcp.network import Armor
 from diagrams.gcp.compute import Run, Functions
 from diagrams.gcp.database import SQL, Datastore
-from diagrams.generic.device import Mobile, Tablet
 from diagrams.onprem.database import PostgreSQL
-from diagrams.onprem.monitoring import Grafana
-from diagrams.programming.framework import Flutter, React, Spring
+from diagrams.programming.framework import React, Spring
 from diagrams.saas.cdn import Cloudflare
-from diagrams.k8s.compute import Pod
 
 
 def drawArchitecture(is_service=False):
