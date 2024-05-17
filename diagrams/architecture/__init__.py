@@ -23,9 +23,9 @@ def drawArchitecture(is_service=False):
             backend_nosql = Datastore("Backend Palette DB")
 
         with Cluster("Algorithm Cluster"):
-            algorithm1 = Pod("Algorithm 1") if not is_service else Run("Algorithm 1")
-            algorithm2 = Pod("Algorithm 2") if not is_service else Run("Algorithm 1")
-            algorithm3 = Pod("Algorithm 3") if not is_service else Run("Algorithm 1")
+            algorithm1 = Functions("Algorithm 1")
+            algorithm2 = Functions("Algorithm 2")
+            algorithm3 = Functions("Algorithm 3")
     
     client >> armor
 
