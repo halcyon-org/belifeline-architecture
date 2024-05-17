@@ -23,7 +23,7 @@ def drawArchitecture(is_service=False):
             algorithm1 = Functions("Algorithm 1")
             algorithm2 = Functions("Algorithm 2")
             algorithm3 = Functions("Algorithm 3")
-    
+
     client >> armor
 
     armor >> backend_run
@@ -32,11 +32,12 @@ def drawArchitecture(is_service=False):
     backend_run >> backend_nosql
     backend_sql >> backend_run
     backend_nosql >> backend_run
-    
-    
+
 
 with Diagram("GCP Architecture", filename="docs/architecture/imgs/gcp_architecture", show=False, direction="TB"):
     drawArchitecture()
 
-with Diagram("Service Architecture", filename="docs/architecture/imgs/service_architecture", show=False, direction="TB"):
+with Diagram(
+    "Service Architecture", filename="docs/architecture/imgs/service_architecture", show=False, direction="TB"
+):
     drawArchitecture(is_service=True)
