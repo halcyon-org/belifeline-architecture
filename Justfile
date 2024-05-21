@@ -2,6 +2,11 @@ set export
 
 default:
   @just --list
+
+setup:
+  python3 -m venv env
+  source env/bin/activate
+  pip install -r requirements.txt
   
 gen:
   python3 diagrams
