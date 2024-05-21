@@ -3,18 +3,28 @@ set export
 default:
   @just --list
 
-setup:
+setup: setup-py setup-pnpm
+
+setup-py:
   python3 -m venv env
-  source env/bin/activate
+  @if command -v source > /dev/null; then \
+      source env/bin/activate; \
+  else \
+      ./env/bin/activate; \
+  fi
+
   pip install -r requirements.txt
+
+setup-pnpm:
+  pnpm install --frozen-lockfile
   
 gen:
   python3 diagrams
 
-lint: lint-python lint-markdown
+lint: lint-py lint-md
 
-lint-python: 
+lint-py: 
   black diagrams/
 
-lint-markdown:
+lint-md:
   pnpm lint

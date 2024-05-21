@@ -4,4 +4,10 @@
 
 ## 目次
 
-- [システム構成図](/docs/architecture/architecture.md)
+- [システム構成図](/docs/architecture/README.md)
+
+```mermaid
+graph TD
+
+test
+```
