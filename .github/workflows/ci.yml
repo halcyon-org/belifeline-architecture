@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -17,31 +18,29 @@ jobs:
           node-version: 18
           cache: "pnpm"
       - name: Install package
-        run: pnpm install --frozen-lockfile
+        run: just setup-pnpm
       - name: Lint
-        run: pnpm lint
+        run: just lint-md
   lint_python:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install black pytest
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with black
         run: |
           black diagrams/
-      - uses: extractions/setup-just@v2
       - uses: ts-graphviz/setup-graphviz@v2
+      - name: Install dependencies
+        run: |
+          just setup-py
       - name: Generate files using just
         run: |
-          just lint-python
+          just lint-py
       - name: commit and push changes
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
