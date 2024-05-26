@@ -7,24 +7,18 @@ setup: setup-py setup-pnpm
 
 setup-py:
   python3 -m venv env
-  @if command -v source > /dev/null; then \
-      source env/bin/activate; \
-  else \
-      ./env/bin/activate; \
-  fi
-
-  pip install -r requirements.txt
+  env/bin/pip3 install -r requirements.txt
 
 setup-pnpm:
   pnpm install --frozen-lockfile
   
 gen:
-  python3 diagrams
+  env/bin/python3 diagrams
 
 lint: lint-py lint-md
 
 lint-py: 
-  black diagrams/
+  env/bin/black diagrams/
 
 lint-md:
   pnpm lint
