@@ -13,8 +13,10 @@
 
 各アルゴリズムの詳細については、[各アルゴリズム](./algorithm/README.md)を参照してください。
 
-データの処理フェーズであるこの機能には、Backend ServerとAlgorithm Clusterの間での通信のみで成り立ちます。Algorithm ClusterはGCP内部以外にはアクセスできません。
-Algorithm Clusterに属する、各Algorithm Functionは、自らが必要とする情報をあらかじめBackend Serverに登録します。Backend Serverは、その情報(その情報に関連付けられた外部API)が更新された時に、各Algorithm Functionに通知します。
-これによって、各Algorithm Functionは最新の情報でデータを処理し、結果をBackend Serverに返します。
+データの処理フェーズであるこの機能には、Backend Server と Algorithm Cluster の間での通信のみで成り立ちます。
+Algorithm Cluster は GCP 内部以外にはアクセスできません。
+Algorithm Cluster に属する、各 Algorithm Function は、自らが必要とする情報をあらかじめ Backend Server に登録します。
+Backend Server は、その情報(その情報に関連付けられた外部 API)が更新された時に、各 Algorithm Function に通知します。
+これによって、各 Algorithm Function は最新の情報でデータを処理し、結果を Backend Server に返します。
 
-上記の理由により、Algorithm Functionはイベント駆動型となっています。
+上記の理由により、Algorithm Function はイベント駆動型となっています。
