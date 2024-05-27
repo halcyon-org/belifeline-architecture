@@ -43,9 +43,6 @@ def drawArchitecture(is_service=False):
     backend_sql >> backend_run
 
     if is_service:
-        algorithm_server >> backend_run
-        backend_run >> algorithm_server
-
         algorithm_server >> backend_sql
         backend_sql >> algorithm_server
 
