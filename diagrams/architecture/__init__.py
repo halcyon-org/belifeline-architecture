@@ -1,12 +1,14 @@
 from diagrams import Diagram, Cluster
 from diagrams.gcp.network import Armor
-from diagrams.gcp.compute import Run, Functions
-from diagrams.gcp.database import SQL, Datastore
+from diagrams.gcp.compute import Run
+from diagrams.gcp.database import SQL
 from diagrams.onprem.database import PostgreSQL
+from diagrams.programming.language import Python
 from diagrams.programming.framework import React, Spring
 from diagrams.saas.cdn import Cloudflare
 from diagrams.generic.compute import Rack
 from diagrams.gcp.storage import Storage
+from diagrams.k8s.compute import Job
 
 
 def drawArchitecture(is_service=False):
@@ -25,9 +27,9 @@ def drawArchitecture(is_service=False):
                 algorithm_server = Spring("Algorithm Back-end Server")
 
         with Cluster("Algorithm Cluster"):
-            algorithm1 = Functions("Algorithm 1")
-            algorithm2 = Functions("Algorithm 2")
-            algorithm3 = Functions("Algorithm 3")
+            algorithm1 = Job("Algorithm 1") if not is_service else Python("Algorithm 1")
+            algorithm2 = Job("Algorithm 2") if not is_service else Python("Algorithm 2")
+            algorithm3 = Job("Algorithm 3") if not is_service else Python("Algorithm 3")
             algorithm_cluster = [algorithm1, algorithm2, algorithm3]
 
     with Cluster("External API"):
