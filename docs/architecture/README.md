@@ -20,6 +20,7 @@
     - Main と Algorithm の二系統存在し、Algorithm 系は GCP 内のみアクセスできる
     - Main は外部からアクセス可能(Client のための API を提供する)
     - Algorithm API は Algorithm Cluster の制御を行う
+    - Main と Algorithm の系統は実質同じ Backend だが、パスごとに分離している
   - Backend DB
     - 暫定的に PostgreSQL を使用
     - ヒートマップを PostGIS みたいなのを使うか、別の DB(Big Query 等)に保存するかは検討中

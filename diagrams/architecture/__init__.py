@@ -19,12 +19,9 @@ def drawArchitecture(is_service=False):
         armor = Armor("Armor")
 
         with Cluster("Back-end API"):
-            backend_run = Run("Main/Algorithm Back-end API") if not is_service else Spring("Main Back-end API")
+            backend_run = Run("Main/Algorithm Back-end API") if not is_service else Spring("Back-end API")
             backend_sql = SQL("Backend DB") if not is_service else PostgreSQL("Backend DB")
             backend_storage = Storage("Backend Storage")
-
-            if is_service:
-                algorithm_server = Spring("Algorithm Back-end Server")
 
         with Cluster("Algorithm Cluster"):
             algorithm1 = Job("Algorithm 1") if not is_service else Python("Algorithm 1")
@@ -44,27 +41,14 @@ def drawArchitecture(is_service=False):
     backend_run >> backend_sql
     backend_sql >> backend_run
 
-    if is_service:
-        algorithm_server >> backend_sql
-        backend_sql >> algorithm_server
+    backend_run >> satellite_api
 
-        backend_storage >> algorithm_server
-        algorithm_server >> backend_storage
-
-        algorithm_server >> satellite_api
-    else:
-        backend_run >> satellite_api
-
-        backend_storage >> backend_run
-        backend_run >> backend_storage
+    backend_storage >> backend_run
+    backend_run >> backend_storage
 
     for algo in algorithm_cluster:
-        if is_service:
-            algorithm_server >> algo
-            algo >> algorithm_server
-        else:
-            backend_run >> algo
-            algo >> backend_run
+        backend_run >> algo
+        algo >> backend_run
 
 
 with Diagram("GCP Architecture", filename="docs/architecture/imgs/gcp_architecture", show=False, direction="TB"):
