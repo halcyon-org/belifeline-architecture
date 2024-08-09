@@ -23,16 +23,17 @@ sequenceDiagram
     participant db as データベース
     participant func as Algorithm Function
     server ->> func: 初回起動イベントをコール
-    func ->> server: アルゴリズム情報(要求情報等)を登録
+    func ->> server: アルゴリズム情報を登録
     server ->> db: 情報を保存
-    server ->> func: アルゴリズム情報に基づき、外部情報を返却
+    func ->> server: 外部情報を要求
+    server ->> func: 外部情報を返却
     func ->> func: データ分析・抽出
     func ->> server: データを返却
     server ->> db: データを保存
 
 ```
 
-## 外部情報更新時
+## 外部情報更新時・パラメータ別要求時
 
 ```mermaid
 sequenceDiagram
@@ -44,22 +45,5 @@ sequenceDiagram
     server ->> func: 要求に基づき、外部情報を返却
     func ->> func: データ分析・抽出
     func ->> server: データを返却
-
-```
-
-## パラメータ別要求時
-
-```mermaid
-sequenceDiagram
-    participant provider as プロバイダー
-    participant server as アルゴリズムバックエンド
-    participant db as データベース
-    participant func as Algorithm Function
-    provider ->> server: データ要求
-    server ->> func: 初回起動イベントをコール
-    func ->> server: アルゴリズム情報(要求情報等)を登録
-    server ->> db: 情報を保存
-    server ->> func: 情報に基づき、データを返却
-    server ->> provider: データ更新通知
 
 ```
