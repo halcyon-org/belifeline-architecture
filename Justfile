@@ -17,8 +17,9 @@ gen:
 
 lint: lint-py lint-md
 
-lint-py: 
+lint-py: setup-py
   env/bin/black diagrams/
+  env/bin/isort diagrams/
 
-lint-md:
+lint-md: setup-pnpm
   pnpm lint
