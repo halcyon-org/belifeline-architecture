@@ -1,1 +1,2 @@
 from architecture.infra import drawInfraServer, drawInfraService
+from architecture.service import drawServiceArchitecture
