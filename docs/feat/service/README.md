@@ -5,7 +5,7 @@
 
 ## 概要
 
-本プロジェクトは、大まかに Kizuna(Backend) と Polka(Visualizer) と Koyo(Algorithm Cluster) の 3 つの部分に分かれる。
+本プロジェクトは、大まかに Kizuna(Backend) と Polka(Visualizer) と Koyo(koyo Cluster) の 3 つの部分に分かれる。
 詳細は、[アーキテクチャ](../../architecture/README.md)及び、[データの定義](./data.md)を参照。
 
 ## 目次
