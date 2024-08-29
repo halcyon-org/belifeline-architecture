@@ -1,35 +1,45 @@
 # システム構成
 
-## 概要
+- サーバー構成
+  - クラウド
+  - VM 構成
 
-- クラウドは GCP を使用
-- 基本的にすべてサーバレス設計
+## サービス概要
 
-### 構成図の説明
+本システムには、オンプレとクラウドの環境が存在しています。オンプレでは、Proxmox による仮想化環境を構築しており、クラウドでは GCP を利用しています。基本的な計算リソースはオンプレに存在しており、クラウドはエンドポイントやゲートウェイとして存在しています。
 
-- Client
-  - Client(Remix)
-    - Remix を用いて Web アプリケーションを作成する
-    - 何かしらの Map API の地図上に Backend API から取得したヒートマップをオーバーレイする
-    - Cloudflare Pages でホスティングする
-- GCP
-  - Armor
-    - DDoS や Bot の対策のための GCP と外を繋ぐゲートウェイとする
-    - inbound は Armor を通し、outbound は Armor を通さないようにする(通信量削減)
-  - Backend API
-    - Main と Algorithm の二系統存在し、Algorithm 系は GCP 内のみアクセスできる
-    - Main は外部からアクセス可能(Client のための API を提供する)
-    - Algorithm API は Algorithm Cluster の制御を行う
-    - Main と Algorithm の系統は実質同じ Backend だが、パスごとに分離している
-  - Backend DB
-    - 暫定的に PostgreSQL を使用
-    - ヒートマップを PostGIS みたいなのを使うか、別の DB(Big Query 等)に保存するかは検討中
-  - Backend Storage
-    - 衛星画像などの一時保存を行う
-- Algorithm Cluster
+BeLifelineは複数のサービスに分かれており、
 
-### システム構成図
+- Kiuzna (バックエンドAPI)
+  - バックエンドAPI
+  - データの変換、保存、管理を行う
+  - onp-k8s にデプロイ
+  - Love (バックエンド外部情報バッチサービス)
+    - 外部情報の更新をフックするためのバッチサービス
+    - 外部情報の取得は行わない(Kizunaが行う)
+    - onp-k8s の CronJob で定期実行
+- Koyo (アルゴリズムクラスター)
+  - 外部情報からデータを処理して、Kizunaにデータを提供する
+  - 複数種のアルゴリズムがクラスターで動作
+  - Kizuna からの k8s control に対するリクエストで動作する
+  - onp-k8s にデプロイ
+- Polka (フロントエンド-ビジュアライザー)
+  - APIのビジュアライザーやプレイグラウンドとして動作するフロントエンドのサービス
+  - Cloudflare Pages でホスティング
+  - KizunaのAPIを叩くだけのシンプルなビジュアライザーで専用APIは存在しない
 
-![クラウド構成図](./imgs/gcp_architecture.png)
+![サービス構成](./imgs/service_architecture.png)
 
-![サービス構成図](./imgs/service_architecture.png)
+## インフラ構成
+
+### サーバー構成
+
+クラウドの構成は[belifeline-infra](https://github.com/halcyon-org/belifeline-infra)にて Terraform で管理されています。
+
+![サーバー構成](./imgs/infra_server.png)
+
+### サービス構成
+
+サービス構成は以下の通りです。
+
+![サービス構成](./imgs/infra_service.png)

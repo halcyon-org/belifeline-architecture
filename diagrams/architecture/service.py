@@ -24,20 +24,20 @@ from diagrams.programming.flowchart import Database
 
 def drawServiceArchitecture():
     with Cluster("Kizuna Cluster"):
-        kizuna = Go("kizuna")
+        kizuna = Go("Kizuna")
         db = PostgreSQL("postgresql")
         storage = Storage("S3 (MinIO  extends TrueNAS)")
 
         kizuna >> Edge(label="gorm") >> db
         kizuna >> Edge(label="minio-go") >> storage
 
-        with Cluster("Cronjob Cluster"):
+        with Cluster("Love Cluster"):
             cronjob = Cronjob("Cronjob")
-            kizuna_ext = Go("Kizuna External Info batch")
+            love = Go("Love")
 
-            cronjob - kizuna_ext
+            cronjob - love
 
-        kizuna_ext >> Edge(label="HTTP API") >> kizuna
+        love >> Edge(label="HTTP API") >> kizuna
 
     with Cluster("Koyo Cluster"):
         k8s_api = API("Kubernetes API")
@@ -55,4 +55,4 @@ def drawServiceArchitecture():
 
     ext_api = Database("External API")
     kizuna >> ext_api
-    kizuna_ext >> ext_api
+    love >> ext_api
