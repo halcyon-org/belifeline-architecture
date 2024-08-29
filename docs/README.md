@@ -4,6 +4,6 @@
 
 ## 目次
 
+- [機能と仕様](/docs/feat/README.md)
 - [システム構成について](/docs/architecture/README.md)
 - [ユビキタス](/docs/feat/ubiq.md)
-- [機能について](/docs/feat/README.md)
