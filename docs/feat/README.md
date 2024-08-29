@@ -1,13 +1,7 @@
 # 機能と仕様
 
-データフォーマットなどと言った仕様は [システム的な仕様](./system/README.md)も参照してください。
-シーケンスに関しては、[シーケンス図](./system/sequence/RAEDME.md)も参照してください。
+## 目次
 
-## メイン機能
-
-- [アルゴリズムクラスター](./algorithm.md)入力データを処理し、各種データを抽出する機能
-- [プロバイダー API](./provider.md)各種データを検索し、指定のフォーマットで返す機能
-
-## サブ機能
-
-- [ビジュアライザー](./visualizer.md)マップにヒートマップを表示する機能
+- [各サービスについて](./service/README.md)
+- [データの定義](./data/README.md)
+- [sequence](./sequence/README.md)

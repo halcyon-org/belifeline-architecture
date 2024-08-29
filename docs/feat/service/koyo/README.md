@@ -12,9 +12,9 @@
 ## 概要
 
 各アルゴリズムの詳細については、[各アルゴリズム](./algorithm/README.md)を参照してください。
-シーケンス図は、[シーケンス図](./system/sequence/algorithm.md)を参照してください。
+シーケンス図は、[シーケンス図](../../sequence/koyo/README.md)を参照してください。
 
-Kizunaとの詳細なやり取りについてはKizunaの仕様のページで説明します。[Kizunaの仕様](./provider.md)
+Kizunaとの詳細なやり取りについてはKizunaの仕様のページで説明します。[Kizunaの仕様](../kizuna/README.md)
 
 データの処理フェーズであるこの機能には、Backend Server と Algorithm Cluster の間での通信のみで成り立ちます。
 Algorithm Cluster は GCP 内部以外にはアクセスできません。
