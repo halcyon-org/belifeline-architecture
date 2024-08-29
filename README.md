@@ -4,5 +4,6 @@
 
 ## 目次
 
-- [システム構成図](/docs/architecture/README.md)
+- [システム構成について](/docs/architecture/README.md)
+- [ユビキタス](/docs/feat/ubiq.md)
 - [機能について](/docs/feat/README.md)
