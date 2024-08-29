@@ -22,4 +22,4 @@ lint-py: setup-py
   env/bin/isort diagrams/
 
 lint-md: setup-pnpm
-  pnpm lint
+  pnpm lint:fix

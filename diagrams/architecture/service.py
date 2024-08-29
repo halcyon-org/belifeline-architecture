@@ -1,25 +1,22 @@
 from diagrams import Cluster, Diagram, Edge
 from diagrams.gcp.compute import ComputeEngine
+from diagrams.gcp.network import Armor
 from diagrams.gcp.storage import Storage
+from diagrams.generic.device import Mobile
 from diagrams.generic.network import VPN
-from diagrams.k8s.compute import Pod
-from diagrams.k8s.controlplane import Kubelet
-from diagrams.onprem.database import Influxdb
+from diagrams.generic.storage import Storage
+from diagrams.k8s.compute import Cronjob, Pod
+from diagrams.k8s.controlplane import API, Kubelet
+from diagrams.onprem.database import Influxdb, PostgreSQL
 from diagrams.onprem.gitops import Argocd
 from diagrams.onprem.iac import Ansible, Terraform
 from diagrams.onprem.logging import Loki
 from diagrams.onprem.monitoring import Grafana, Prometheus
 from diagrams.onprem.proxmox import Pve
 from diagrams.onprem.vcs import Github
-from diagrams.saas.cdn import Cloudflare
-from diagrams.programming.language import Go, Python
-from diagrams.onprem.database import PostgreSQL
-from diagrams.generic.storage import Storage
-from diagrams.k8s.controlplane import API
-from diagrams.k8s.compute import Cronjob
-from diagrams.gcp.network import Armor
-from diagrams.generic.device import Mobile
 from diagrams.programming.flowchart import Database
+from diagrams.programming.language import Go, Python
+from diagrams.saas.cdn import Cloudflare
 
 
 def drawServiceArchitecture():

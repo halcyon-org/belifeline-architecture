@@ -34,7 +34,8 @@ BeLifelineは複数のサービスに分かれており、
 
 ### サーバー構成
 
-クラウドの構成は[belifeline-infra](https://github.com/halcyon-org/belifeline-infra)にて Terraform で管理されています。
+クラウドの構成は[belifeline-infra](https://github.com/halcyon-org/belifeline-infra)にて
+Terraform で管理されています。
 
 ![サーバー構成](./imgs/infra_server.png)
 
